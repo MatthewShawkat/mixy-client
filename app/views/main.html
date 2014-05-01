@@ -1,0 +1,75 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#">About</a></li>
+    <li><a ng-href="#">Contact</a></li>
+  </ul>
+  <h3 class="text-muted">tabbit</h3>
+</div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Saved Matches</h3>
+  </div>
+  <div class="panel-body">
+
+    <div class="btn-group">
+        <span ng-if="saved.length === 0">No saved matches</span>
+        <span ng-repeat="savedItem in saved">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#{{savedItem.name}}">
+            {{savedItem.name}}
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="{{savedItem.name}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">{{savedItem.name}}</h4>
+                </div>
+                <div class="modal-body text-center">
+                  <img class="saved-column-image" ng-repeat="item in savedItem.items" ng-src="{{item}}" />
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </span>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="row marketing">
+  <div class="column-top">
+    <button type="button" class="btn btn-default" ng-click="save()">
+      <!-- <span class="glyphicon glyphicon-save"></span> -->
+       Save
+    </button>
+  </div>
+  
+  <div ng-repeat="pics in collection">
+    <carousel mypics="pics" location="$index" move-up="collectionUp($index)" move-down="collectionUp($index)"></carousel>
+    <!-- <input type="button" value="remove" ng-click="remove($index)" /> -->
+  </div>
+
+  <div class="column-bottom"></div>
+  
+</div>
+
+  <div class="text-center">
+    <button type="button" class="btn btn-primary" ng-click="add()">
+      Add Row
+    </button>
+  </div>
+
+<div class="footer">
+  <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+</div>

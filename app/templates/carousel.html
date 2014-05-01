@@ -1,0 +1,37 @@
+<div class="carousel" ng-mouseenter="showControls = true" ng-mouseleave="showControls = false">
+	<div class="carousel-frame">
+		<div class="column-marker"></div>
+		
+		<div ng-show="showAdd" class="add-image-box">
+			<div class="add-image-box-content panel panel-default">
+				
+				<div class="input-group">
+				  <input type="text" class="form-control" ng-model="newImage">
+				  
+				  <span class="input-group-btn">
+			        <button class="btn btn-default" type="button" ng-click="add()">Add</button>
+			      </span>
+
+				</div>
+			</div>
+		</div>
+		
+		<ul>
+			<li ng-if="mypics.length==0">hiii</li>
+			<li ng-repeat="pic in mypics" ng-controller="itemCtrl" ng-mouseenter="showRemove=true" ng-mouseleave="showRemove=false">
+				<span ng-click="remove($index)" ng-show="showRemove" class="remove-item glyphicon glyphicon-remove"></span>
+				<img ng-src="{{pic}}" />
+			</li>
+		</ul>
+		<span class="carousel-move-left glyphicon glyphicon-chevron-left" ng-click="prev()"></span>
+		<span class="carousel-move-right glyphicon glyphicon-chevron-right" ng-click="next()"></span>
+	</div>
+	
+	<div class="panel panel-default text-center carousel-controls" ng-show="showControls">
+	  <div class="panel-body">
+	    <input class="btn btn-default" type="button" value="Add Image" ng-click="toggleAdd()" />
+	    <input value="Up" type="button" class="btn btn-default" ng-click="moveUp()" />
+	    <input value="Down" type="button" class="btn btn-default" ng-click="moveDown()" />
+	  </div>
+	</div>
+</div>
